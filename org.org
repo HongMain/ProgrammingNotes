@@ -1,0 +1,47 @@
+#+TITLE: Introduction to org-mode
+#+AUTHOR: Alan Xie
+#+EMAIL: HongMain@163.com
+#+DATE: 2017-03-05 Sun
+
+* Notes of learning org-mode
+
+  This is a brief tutorial on org-mode, I'll focus on literate programming, that's my favorite.
+
+  Org is a mode for keeping notes, maintaining TODO lists, and project planning with a fast and effective plain-text system. It also is an authoring system with unique support for literate programming and reproducible research.
+
+* Links
+
+  The [[http://orgmode.org][org-mode]] allows you to write simple text files, but have them viewed and manipulated specially.
+
+  Org will recognize plain URL-like links and activate them as clickable links. The general link format, however, looks like this:
+[ [link][description] ] or alternatively [ [link] ]
+
+  Once a link in the buffer is complete (all brackets present), Org will change the display so that ‘description’ is displayed instead of ‘[ [link][description] ]’ and ‘link’ is displayed instead of ‘[ [link] ]’. To edit the invisible ‘link’ part, use C-c C-l with the cursor on the link.
+
+* Literate Programming
+
+  My favorite feature, as it allows you to include code snippets which can be evaluated. For instance, here is an example:
+
+#+BEGIN_SRC emacs-lisp :dir /
+  (directory-files ".")
+#+END_SRC
+
+#+RESULTS:
+| . | .. | bin | boot | cdrom | core | dev | etc | home | initrd.img | initrd.img.old | lib | lib64 | lost+found | media | mnt | opt | proc | root | run | sbin | snap | srv | sys | tmp | usr | var | vmlinuz | vmlinuz.old |
+
+  Type C-c C-c to execute the command and note the results, are inserted back into your file… we’ll use that to our advantage later.
+
+  Type C-c ’ (apostrophe) to edit the block in the language’s mode. This allows you to gain benefit of paredit and whatnot.
+
+#+NAME: Shell Example
+#+BEGIN_SRC sh
+  uname
+#+END_SRC
+
+#+RESULTS:
+: Linux
+
+
+
+  If C-c C-c doesn’t work, you may have to pre-load the support: M-x load-library and then ob-sh
+
