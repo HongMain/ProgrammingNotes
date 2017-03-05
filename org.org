@@ -33,15 +33,38 @@
 
   Type C-c ’ (apostrophe) to edit the block in the language’s mode. This allows you to gain benefit of paredit and whatnot.
 
-#+NAME: Shell Example
+#+NAME: Shell-Example
 #+BEGIN_SRC sh
   uname
 #+END_SRC
 
-#+RESULTS:
+#+RESULTS: Shell-Example
 : Linux
 
-
-
   If C-c C-c doesn’t work, you may have to pre-load the support: M-x load-library and then ob-sh
+
+  The results from on code block can be used for another code block. For instantce, here is some Python code to generate "some" random numbers.
+
+#+NAME: pythonic-numbers
+#+BEGIN_SRC python :results list
+import random
+return [random.randrange(1, 20)
+  for i in range(random.randrange(1, 20))]
+#+END_SRC
+
+#+RESULTS: pythonic-numbers
+- 13
+- 3
+- 13
+- 8
+- 1
+
+  How many items in the list? Use this Lisp function call to count them.
+
+#+BEGIN_SRC emacs-lisp :var numbers=pythonic-numbers
+  (length numbers)
+#+END_SRC
+
+#+RESULTS:
+: 3
 
